@@ -67,3 +67,6 @@ def Computer_shop():
 
 
 Computer_shop()
+
+def Carrocompras(productos):
+(codigo nuevo.....)
