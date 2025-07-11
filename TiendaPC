@@ -1,0 +1,69 @@
+
+def price_stock(marca):
+    stock = {'8475HD': [387990,10], '123FHD': [290890,32], 'GF75HD': [749990,2], 'UWU131HD': [349990,1]}
+    for models in stock:
+        if marca == models:
+            
+            print(f"el stock disponible es: {stock[models][0] }")
+            break
+
+
+def busqueda_precio(p_min,p_max):
+    
+    stock = {'8475HD': [387990,10], '123FHD': [290890,32], 'GF75HD': [749990,2], 'UWU131HD': [349990,1]}
+    for models in stock:
+        price = stock[models][0]
+        if price > p_min and price < p_max:
+            print(f"productos encontrados en rango de precio de {p_min}-{p_max}: {models}")
+
+def actualizar_precio(modelo,p):
+    stock = {'8475HD': [387990,10], '123FHD': [290890,32], 'GF75HD': [749990,2], 'UWU131HD': [349990,1]}
+
+    if modelo in stock:
+        stock[modelo][0] = p
+        print(f"precio cambiado el nuevo precio es: {stock[modelo][0]}")
+def Computer_shop():
+    
+    productos = {'8475HD': ['HP', 15.6, '8GB', 'DD', '1T', 'Intel Core i5', 'Nvidia GTX1050'], 
+                     'GF75HD': ['Asus', 15.6, '8GB', 'DD', '1T', 'Intel Core i7', 'Nvidia GTX1050'], 
+                     '123FHD': ['lenovo', 14, '6GB', 'DD', '1T', 'AMD Ryzen 5', 'integrada'], 
+                     'UWU131HD': ['Dell', 15.6, '8GB', 'DD', '1T', 'AMD Ryzen 3', 'Nvidia GTX1050'], 
+    }
+
+    while True:
+        print("""*** MENU PRINCIPAL ***
+    1. Stock marca.
+    2. Búsqueda por precio.
+    3. Actualizar precio.
+    4. Salir""")
+        try:
+            opc = int(input("").replace(" ","").replace(".",""))
+        except ValueError as ERROR:
+            print(f"Opcion invalida, ingrese nuevamente.")
+            continue
+        if opc==1:
+            Busqueda_marca = input("Ingrese marca a consultar: ").replace(" ","").replace(".","")
+            for model in productos:
+                if Busqueda_marca in productos[model]:
+                    price_stock(model)
+                    break
+                    
+        elif opc==2:
+            try:
+                pricemin = int(input("Ingrese precio minimo a buscar"))
+                pricemax = int(input("Ingrese precio maximo a buscar"))
+                busqueda_precio(pricemin,pricemax)
+            except ValueError as ERROR:
+                print("Ingrese solo enteros!")
+        elif opc==3:
+            modelo =  input("ingrese modelo a buscar")
+            precioActualizar = int(input("Ingrese precio a actualizar"))
+            actualizar_precio(modelo,precioActualizar)
+
+        elif opc==4:
+            break
+        else:
+            print(f"Opcion invalida: {opc}")
+
+
+Computer_shop()
